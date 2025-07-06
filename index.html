@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SmartDustBin</title>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-image: url('s.png'); 
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: white;
+    }
+
+    #box {
+      background-color: rgba(0, 0, 0, 0.83);
+      height: 60%;
+      width: 25%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      padding: 20px;
+      border-radius: 40px;
+    }
+
+    #title1 {
+      font-size: x-large;
+    }
+
+    #city {
+      width: 100px;
+      height: 25px;
+      font-size: larger;
+      text-align: center;
+      font-weight: bold;
+      border-radius: 10px;
+      text-transform: capitalize;
+    }
+
+    #city:hover {
+      cursor: pointer;
+      background-color: #bbb4b4;
+      color: black;
+    }
+
+    button {
+      padding: 12px 30px;
+      font-size: 18px;
+      font-weight: bold;
+      color: white;
+      background: linear-gradient(145deg, #4CAF50, #2e7d32);
+      border: none;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease-in-out;
+      letter-spacing: 1px;
+      margin-top: 20px;
+    }
+
+    button:hover {
+      background: linear-gradient(145deg, #66bb6a, #388e3c);
+      transform: scale(1.05);
+      cursor: pointer;
+    }
+
+#topButtons {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  gap: 30px; /* increased gap between buttons */
+  z-index: 1;
+}
+
+.topBtn {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 10px;
+  transition: background 0.3s, box-shadow 0.3s;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* added shadow */
+}
+
+.topBtn:hover {
+  background-color: #66bb6a;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4); /* stronger on hover */
+}
+
+
+
+    #output {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #90ee90;
+    }
+  </style>
+</head>
+<body>
+<div id="topButtons">
+  <a href="contact.html" class="topBtn">Contact Us</a>
+  <a href="about.html" class="topBtn">About Us</a>
+</div>
+
+
+  <div id="box">
+    <h1>Smart Dustbin</h1>
+    <label for="city" id="title1">Select Location</label><br><br>
+    <select id="city" name="city">
+      <option value="PRP">PRP</option>
+      <option value="TT">TT</option>
+      <option value="SJT">SJT</option>
+    </select><br><br>
+    <button onclick="checkStatus()">Check</button>
+    <div id="output"></div>
+  </div>
+
+  <script>
+    function checkStatus() {
+      const city = document.getElementById("city").value;
+      const output = document.getElementById("output");
+      let level = Math.floor(Math.random() * 101);
+      let message = level < 50 ? "Bin is not full" :
+                    level < 90 ? "Bin is getting full" :
+                                 "Bin is full - needs cleaning";
+
+      output.innerHTML = `📍 <strong>${city}</strong> - Fill Level: <strong>${level}%</strong><br>Status: <strong>${message}</strong>`;
+    }
+  </script>
+
+</body>
+</html>
